@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-test
+data:
+  # property-like keys; each key maps to a simple value
+  sqlconnectionstring: "Server=some-server;Database=some-db;Min Pool Size=5;Application Name=some-app;User ID=some-user;Password=some-password"
+
+  # file-like keys
+  appsettings.json: |
+    {
+      "EnvironmentValues": {
+        "SQLConfig": {
+          "Server": "some-server",
+          "LegacyServer": "some-legacy-server",
+          "Database": "some-db",
+          "CustomDatabase": null,
+          "CamxServer": null,
+          "CamxDatabase": null,
+          "ConnectionProperties": "Min Pool Size=5;MultiSubnetFailover=True;ApplicationIntent=ReadWrite",
+          "Authentication": "User Id=some-user-id;Password=some-password"
+        },
+        "EnvironmentName": "some env-name",
+        "URL": {
+          "Hostname": "some-host-name",
+          "DefaultSubdomain": null,
+          "Protocol": "https",
+          "BaseUrl": "${EnvironmentValues:URL:Protocol}://${EnvironmentValues:URL:Hostname}"
+        },
+        "SFM_URL": {
+          "Hostname": "sfm-host-name",
+          "Protocol": "http",
+          "BaseUrl": "${EnvironmentValues:SFM_URL:Protocol}://${EnvironmentValues:SFM_URL:Hostname}"
+        },
+        "SFMConveyorController": {
+          "InstanceName": "KKW_CC02",
+          "IFactoryMode": true
+        }
+      }
+      "SqlConfigBase":
+      {
+        "SqlConnectionString":"Server=some-server;Database=some-db;Min Pool Size=5;Application Name=some-app;User ID=some-user;Password=some-password",
+        "SqlHealthCheckConnectionString":"",
+        "MaxRetryCount":5,
+        "TimeIntervalBetweenRetryInSeconds":50
+      },
+      "AuthOptionsBase": {
+        "BaseUrl": "http://localhost:8020",
+        "SignInUrl": "api/cookie",
+        "ClaimCacheDuration": 300,
+        "UseCommonSecurity": true
+      }
+    }

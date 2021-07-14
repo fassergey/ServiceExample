@@ -22,8 +22,8 @@ namespace ServiceExample
         {
             services.AddControllers();
 
-            services.AddDbContext<SomeDbContext>(
-                options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<SomeDbContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

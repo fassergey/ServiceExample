@@ -154,6 +154,47 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/mgmt/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"mgmt",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSetting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/settings/getkey/EnvironmentName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"settings",
+						"getkey",
+						"EnvironmentName"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

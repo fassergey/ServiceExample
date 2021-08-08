@@ -5,72 +5,57 @@ metadata:
 data:
   # property-like keys; each key maps to a simple value
   sqlconnectionstring: "Server=some-server;Database=some-db;Min Pool Size=5;Application Name=some-app;User ID=some-user;Password=some-password"
-
-  # file-like keys
-  appsettings.json: |
-    {
-      "EnvironmentValues": {
-        "SQLConfig": {
-          "Server": "alternative-server",
-          "LegacyServer": "alternative-legacy-server",
-          "Database": "alternative-db",
-          "CustomDatabase": null,
-          "CamxServer": null,
-          "CamxDatabase": null,
-          "ConnectionProperties": "Min Pool Size=5;MultiSubnetFailover=True;ApplicationIntent=ReadWrite",
-          "Authentication": "User Id=some-user;Password=some-password"
-        },
-        "EnvironmentName": "alternative-env-name",
-        "URL": {
-          "Hostname": "alternative-host",
-          "DefaultSubdomain": null,
-          "Protocol": "https",
-          "BaseUrl": "${EnvironmentValues:URL:Protocol}://${EnvironmentValues:URL:Hostname}"
-        },
-        "SFM_URL": {
-          "Hostname": "USPLND0SFMDEV42",
-          "Protocol": "http",
-          "BaseUrl": "${EnvironmentValues:SFM_URL:Protocol}://${EnvironmentValues:SFM_URL:Hostname}"
-        },
-        "SFMConveyorController": {
-          "InstanceName": "KKW_CC02",
-          "IFactoryMode": true
-        },
-        "ApplicationInsights": {
-          "InstrumentationKey": "f5dce8ab-60f1-4413-95bf-8237ff1a4ad8"
-        },
-        "TokenCertificateName": "IFactory.Certs.CodeSigning.NonProduction",
-        "MSMQServiceHost": null,
-        "Wiki": {
-          "BaseUrl": "http://wiki:8090",
-          "SQLConfig": {
-            "Server": "wiki-server",
-            "Database": "wiki-db",
-            "Authentication": "User ID=wiki-id;Password=wiki-password"
+  SqlConfig: "{ 
+              'Server': 'some-server',
+              'LegacyServer': 'some-legacy server',
+              'Database': 'some-db',
+              'CustomDatabase': null,
+              'CamxServer': null,
+              'CamxDatabase': null,
+              'ConnectionProperties': 'Min Pool Size=5;MultiSubnetFailover=True;ApplicationIntent=ReadWrite',
+              'Authentication': 'User Id=some-user;Password=some-password'
+            }"
+  EnvironmentName: "alternative-some-env"
+  URL: "{
+          'Hostname': 'some-host',
+          'DefaultSubdomain': null,
+          'Protocol': 'https',
+          'BaseUrl': 'http://some-url.org'
+        }"
+  SFM_URL: "{
+          'Hostname': 'sfm-host-name',
+          'Protocol': 'http',
+          'BaseUrl': '${EnvironmentValues:SFM_URL:Protocol}://${EnvironmentValues:SFM_URL:Hostname}'
+        }"
+  SFMConveyorController: "{
+          'InstanceName': 'KKW_CC02',
+          'IFactoryMode': true
+        }"
+  ApplicationInsights: "{
+          'InstrumentationKey': 'ffffffff-60f1-4413-95bf-8237ff1a4ad8'
+        }"
+  TokenCertificateName: "token-certificate-name"
+  Wiki: "{
+          'BaseUrl': 'http://wiki:8090',
+          'SQLConfig': {
+            'Server': 'wiki-server',
+            'Database': 'wiki-db',
+            'Authentication': 'User ID=wiki-id;Password=wiki-password'
           }
-        },
-        "SSRS": {
-          "BaseUrl": null,
-          "Folder": null
-        },
-        "RMAConfig": {
-          "Database": "RMA_DEV"
-        }
-      },
-      "EnvironmentOptionsBase": {
-        "Hostname": "${EnvironmentValues:URL:Hostname}"
-      },
-      "SqlConfigBase":
-      {
-        "SqlConnectionString":"Server=some-server;Database=some-db;Min Pool Size=5;Application Name=some-app;User ID=some-user;Password=some-password",
-        "SqlHealthCheckConnectionString":"",
-        "MaxRetryCount":5,
-        "TimeIntervalBetweenRetryInSeconds":50
-      },
-      "AuthOptionsBase": {
-        "BaseUrl": "http://localhost:8020",
-        "SignInUrl": "api/cookie",
-        "ClaimCacheDuration": 300,
-        "UseCommonSecurity": true
-      }
-    }
+        }"
+  SSRS: "{
+          'BaseUrl': null,
+          'Folder': null
+        }"
+  SqlConfigBase: "{
+        'SqlConnectionString':'Server=${EnvironmentValues:SQLConfig:Server};Database=${EnvironmentValues:SQLConfig:Database};Min Pool Size=5;Application Name=${ApplicationData:ApplicationName}_${EnvironmentValues:EnvironmentName};${EnvironmentValues:SQLConfig:Authentication}',
+        'SqlHealthCheckConnectionString':'',
+        'MaxRetryCount':5,
+        'TimeIntervalBetweenRetryInSeconds':50
+      }"
+  AuthOptionsBase: "{
+    'BaseUrl': 'http://some-url:8020',
+    'SignInUrl': 'api/cookie',
+    'ClaimCacheDuration': 300,
+    'UseCommonSecurity': true
+  }"

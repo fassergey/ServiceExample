@@ -16,6 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		deployment.yml = deployment.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postman", "postman", "{EF76B15A-E764-46D6-87E3-68351BD02681}"
+	ProjectSection(SolutionItems) = preProject
+		postman\ServiceExample.postman_collection.json = postman\ServiceExample.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +34,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF76B15A-E764-46D6-87E3-68351BD02681} = {D54EE6B8-DAD8-4CCE-9E63-1A2D1B1916DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8500F2B2-9494-4F5B-A3E0-3CCB5200217E}

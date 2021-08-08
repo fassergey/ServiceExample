@@ -14,7 +14,7 @@ spec:
         app.kubernetes.io/instance: serviceexampleinstance 
     spec:
       containers:
-      - image: serviceexample:v1
+      - image: serviceexample:v6
         name: serviceexampleapi
         imagePullPolicy: Never
       #   volumeMounts:
